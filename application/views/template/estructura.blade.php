@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/AgendaDigital/application/views/auth/00topbar.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/admon-agenda-digital-web/application/views/auth/00topbar.php'); ?>
 
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
