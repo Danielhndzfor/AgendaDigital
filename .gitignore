@@ -43,3 +43,7 @@ vendor
 application/config/settings.php
 application/config/database.php
 application/config/config.php
+
+/application/config/settings.php
+/application/config/database.php
+/application/config/config.php
