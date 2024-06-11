@@ -29,7 +29,15 @@
     <!--begin::Layout Themes(used by all pages)-->
 
     <!--end::Layout Themes-->
-
+    <script type="text/javascript">
+        var PATH = "<?php echo site_url(); ?>";
+        var PATH_BASE = "<?php echo base_url(); ?>";
+        var PATH_LANGUAGE = "<?php echo 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'; ?>";
+        var API_KEY = "<?php echo $this->session->userdata('apiKey'); ?>";
+        var CONTROLLER = "<?php echo $this->router->class; ?>";
+        var FUNCTION = "<?php echo $this->router->method; ?>";
+        var SEGMENTO = "";
+    </script>
 
 </head>
 <!--end::Head-->
