@@ -222,21 +222,18 @@ class Auth extends CI_Controller
 	 */
 	public function login()
 	{
-
 		$this->results = array();
-
 		$this->data['title'] = $this->lang->line('login_heading');
 
 		// validate form input
 		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
 		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
 
-		if ($this->form_validation->run() === TRUE) {
-
-
+		if ($this->form_validation->run() === TRUE)
+		{
 			// check to see if the user is logging in
 			// check for "remember me"
-			//$remember = (bool)$this->input->post('remember');
+			$remember = (bool)$this->input->post('remember');
 
 			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember = true) == TRUE) {
 
@@ -255,10 +252,12 @@ class Auth extends CI_Controller
 			}
 			
 			echo json_encode($this->result);
-		} else {
+		}
+		else
+		{
 			// the user is not logging in so display the login page
 			// set the flash data error message if there is one
-			$this->data['mensaje'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
 			$this->data['identity'] = [
 				'name' => 'identity',
@@ -273,15 +272,12 @@ class Auth extends CI_Controller
 				'type' => 'password',
 			];
 
-
 			$this->blade->render('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
 
 			// $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
 		}
-
-		
-
 	}
+
 	/**
 	 * Log the user out
 	 */
