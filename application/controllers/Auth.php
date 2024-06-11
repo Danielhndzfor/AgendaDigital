@@ -222,44 +222,43 @@ class Auth extends CI_Controller
 	 */
 	public function login()
 	{
-		
+
+		$this->results = array();
+
 		$this->data['title'] = $this->lang->line('login_heading');
 
 		// validate form input
 		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
 		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
 
-		if ($this->form_validation->run() === TRUE)
-		{
+		if ($this->form_validation->run() === TRUE) {
+
+
 			// check to see if the user is logging in
 			// check for "remember me"
-			$remember = (bool)$this->input->post('remember');
+			//$remember = (bool)$this->input->post('remember');
 
-			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
-			{
-				
+			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember = true) == TRUE) {
+
 				//if the login is successful
-				//redirect them back to the home page
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				 redirect('/', 'refresh');
+				//redirect them back to the home page.
 
-			}
-			else
-			{
-
+				
+				$this->result['mensaje'] = $this->ion_auth->messages();
+			} else {
 				
 				// if the login was un-successful
 				// redirect them back to the login page
-				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				// redirect('auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
-				$this->blade->render('auth/login');
+
+				$this->result['estatus'] = 'error';
+				$this->result['mensaje'] = $this->ion_auth->errors();
 			}
-		}
-		else
-		{
+			
+			echo json_encode($this->result);
+		} else {
 			// the user is not logging in so display the login page
 			// set the flash data error message if there is one
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$this->data['mensaje'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
 			$this->data['identity'] = [
 				'name' => 'identity',
@@ -274,12 +273,15 @@ class Auth extends CI_Controller
 				'type' => 'password',
 			];
 
+
 			$this->blade->render('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
 
 			// $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
 		}
-	}
 
+		
+
+	}
 	/**
 	 * Log the user out
 	 */
