@@ -29,10 +29,19 @@
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="<?php echo THEME_URL.'assets/Theme/src/media/logos/favicon.ico';?>" />
-
+    <script type="text/javascript">
+        var PATH = "<?php echo site_url(); ?>";
+        var PATH_BASE = "<?php echo base_url(); ?>";
+        var PATH_LANGUAGE = "<?php echo 'https://cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json'; ?>";
+        var API_KEY = "<?php echo $this->session->userdata('apiKey'); ?>";
+        var CONTROLLER = "<?php echo $this->router->class; ?>";
+        var FUNCTION = "<?php echo $this->router->method; ?>";
+        var SEGMENTO = "";
+    </script>
+   
 
     @yield('css')
-
+</head>
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">
