@@ -24,7 +24,7 @@ $config['produccion'] = array(
 #------------------------------------------------------------
 $config['desarrollo'] = array(
     'desarrollo'    => true,
-    'host'          => 'localhost/AgendaDigital',
+    'host'          => 'localhost/admon-agenda-digital-web',
     'bd_hostname'   => 'localhost',
     'bd_database'   => 'themebasedb',
     'bd_user'       => 'root',
